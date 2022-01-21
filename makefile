@@ -1,9 +1,10 @@
 CC = gcc
-CFLAGS = -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl
+LINKS = -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl
+CFLAGS=-Werror -Wall
 OUTPUT = ./output/main.o
 INPUT = ./src/main.c ./src/lib/glad.c
 INCLUDE_PATH = ./include
 
 build:
 	echo Building executable $(OUTPUT)
-	$(CC) $(CFLAGS) -I $(INCLUDE_PATH) -o $(OUTPUT) $(INPUT)
+	$(CC) $(CFLAGS) $(LINKS) -I $(INCLUDE_PATH) -o $(OUTPUT) $(INPUT)

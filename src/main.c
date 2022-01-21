@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -26,16 +27,21 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 void process_input(GLFWwindow *window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    {
-        fprintf(stdout, "ESCAPE PRESSED\n");
-    }
+        glfwSetWindowShouldClose(window, true);
 }
 
 void render_loop(GLFWwindow *window)
 {
+    double lastTime = glfwGetTime();
+    int frames = 0;
+
     while (!glfwWindowShouldClose(window))
     {
         process_input(window);
+
+        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+
+        glClear(GL_COLOR_BUFFER_BIT);
 
         glfwPollEvents();
         glfwSwapBuffers(window);
