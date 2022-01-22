@@ -1,0 +1,14 @@
+name: Build
+on:
+  push:
+    branches:
+      - *
+
+jobs:
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get install libglfw3 libglfw3-dev cmake
+      - name: build
+        run: make
