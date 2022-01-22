@@ -32,8 +32,8 @@ void process_input(GLFWwindow *window)
 
 void render_loop(GLFWwindow *window)
 {
-    double lastTime = glfwGetTime();
-    int frames = 0;
+    // double lastTime = glfwGetTime();
+    // int frames = 0;
 
     while (!glfwWindowShouldClose(window))
     {
