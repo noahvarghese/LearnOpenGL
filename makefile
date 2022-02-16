@@ -7,4 +7,4 @@ INCLUDE_PATH = ./include
 
 build:
 	echo Building executable $(OUTPUT)
-	$(CC) $(CFLAGS) $(LINKS) -I $(INCLUDE_PATH) -o $(OUTPUT) $(INPUT)
+	$(CC) $(CFLAGS) -o $(OUTPUT) $(INPUT) $(LINKS) -I $(INCLUDE_PATH)
