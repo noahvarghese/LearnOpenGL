@@ -1,19 +1,26 @@
 #include "two_triangles_2.h"
 
-const char *tt2VertexShaderSource = "#version 460 core\n"
+const char *tt3VertexShaderSource = "#version 460 core\n"
                                     "layout (location = 0) in vec3 aPos;\n"
                                     "void main()\n"
                                     "{\n"
                                     "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
                                     "}\0";
 
-const char *tt2FragmentShaderSource = "#version 460 core\n"
-                                      "out vec4 FragColor;\n"
-                                      "void main()\n"
-                                      "{\n"
-                                      "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-                                      "}\n";
-int two_triangles_2_lesson(void)
+const char *yellowFragmentShaderSource = "#version 460 core\n"
+                                         "out vec4 FragColor;\n"
+                                         "void main()\n"
+                                         "{\n"
+                                         "FragColor = vec4(1.0f, 0.8f, 0.0f, 1.0f);\n"
+                                         "}\n";
+
+const char *orangeFragmentShaderSource = "#version 460 core\n"
+                                         "out vec4 FragColor;\n"
+                                         "void main()\n"
+                                         "{\n"
+                                         "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+                                         "}\n";
+int two_triangles_3_lesson(void)
 {
     float triangle1[] = {
         -0.5f,
@@ -39,32 +46,46 @@ int two_triangles_2_lesson(void)
 
     // 1. compile shaders
     unsigned int vertexShader;
-    unsigned int fragmentShader;
+    unsigned int yFragmentShader;
+    unsigned int oFragmentShader;
 
-    vertexShader = compile_shader(tt2VertexShaderSource, GL_VERTEX_SHADER);
-    fragmentShader = compile_shader(tt2FragmentShaderSource, GL_FRAGMENT_SHADER);
+    vertexShader = compile_shader(tt3VertexShaderSource, GL_VERTEX_SHADER);
+    yFragmentShader = compile_shader(yellowFragmentShaderSource, GL_FRAGMENT_SHADER);
+    oFragmentShader = compile_shader(orangeFragmentShaderSource, GL_FRAGMENT_SHADER);
 
     // 2. create program with shaders
-    unsigned int shaderProgram;
-    shaderProgram = glCreateProgram();
-
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-
-    glLinkProgram(shaderProgram);
-
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    unsigned int yShaderProgram;
+    yShaderProgram = glCreateProgram();
+    glAttachShader(yShaderProgram, vertexShader);
+    glAttachShader(yShaderProgram, yFragmentShader);
+    glLinkProgram(yShaderProgram);
+    glGetProgramiv(yShaderProgram, GL_LINK_STATUS, &success);
 
     if (!success)
     {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetProgramInfoLog(yShaderProgram, 512, NULL, infoLog);
+        const char *message = str_concat("Shader compilation failed\n", infoLog);
+        print_error(message);
+    }
+
+    unsigned int oShaderProgram;
+    oShaderProgram = glCreateProgram();
+    glAttachShader(oShaderProgram, vertexShader);
+    glAttachShader(oShaderProgram, oFragmentShader);
+    glLinkProgram(oShaderProgram);
+    glGetProgramiv(oShaderProgram, GL_LINK_STATUS, &success);
+
+    if (!success)
+    {
+        glGetProgramInfoLog(oShaderProgram, 512, NULL, infoLog);
         const char *message = str_concat("Shader compilation failed\n", infoLog);
         print_error(message);
     }
 
     // 3. clearnup shader resources
     glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+    glDeleteShader(yFragmentShader);
+    glDeleteShader(oFragmentShader);
 
     unsigned int VAOs[2], VBOs[2];
 
@@ -92,10 +113,12 @@ int two_triangles_2_lesson(void)
         // Must clear before drawing (not after)
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glUseProgram(shaderProgram);
+        glUseProgram(yShaderProgram);
 
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glUseProgram(oShaderProgram);
 
         glBindVertexArray(VAOs[1]);
         glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -106,7 +129,9 @@ int two_triangles_2_lesson(void)
 
     glDeleteVertexArrays(2, VAOs);
     glDeleteBuffers(2, VBOs);
-    glDeleteProgram(shaderProgram);
+
+    glDeleteProgram(yShaderProgram);
+    glDeleteProgram(oShaderProgram);
 
     glfwTerminate();
     return 0;
