@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "triangle.h"
+#include "rectangle.h"
 
 int main(int argc, char **argv)
 {
@@ -11,11 +12,21 @@ int main(int argc, char **argv)
 
     while (argv[i] != NULL)
     {
-        if (!strcmp(argv[i++], "triangle"))
+        if (!strcmp(argv[i], "triangle"))
         {
             render_loop = triangle_lesson;
+        }
+        else if (!strcmp(argv[i], "rectangle"))
+        {
+            render_loop = rectangle_lesson;
+        }
+
+        if (render_loop != NULL)
+        {
             break;
         }
+
+        i++;
     }
 
     if (render_loop != NULL)
@@ -25,5 +36,6 @@ int main(int argc, char **argv)
     }
 
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
+    fprintf(stderr, "[ HELP ]: Options are:\n\ttriangle\n\trectangle\n");
     return 1;
 }

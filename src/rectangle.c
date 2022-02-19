@@ -1,28 +1,43 @@
 #include "custom_helpers.h"
-#include "triangle.h"
+#include "rectangle.h"
 
-float tVertices[] = {
-    -0.5f, -0.5f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-    0.0f, 0.5f, 0.0f};
-
-const char *tVertexShaderSource = "#version 460 core\n"
+const char *rVertexShaderSource = "#version 460 core\n"
                                   "layout (location = 0) in vec3 aPos;\n"
                                   "void main()\n"
                                   "{\n"
                                   "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
                                   "}\0";
 
-const char *tFragmentShaderSource = "#version 460 core\n"
+const char *rFragmentShaderSource = "#version 460 core\n"
                                     "out vec4 FragColor;\n"
                                     "void main()\n"
                                     "{\n"
                                     "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
                                     "}\n";
 
-int triangle_lesson(void)
+float rVertices[] = {
+    0.5f,
+    0.5f,
+    0.0f,
+    0.5f,
+    -0.5f,
+    0.0f,
+    -0.5f,
+    -0.5f,
+    0.0f,
+    -0.5f,
+    0.5f,
+    0.0f,
+};
+
+unsigned int rIndices[] = {
+    0, 1, 3,
+    1, 2, 3};
+
+int rectangle_lesson(void)
 {
     GLFWwindow *window = init_window();
+
     int success;
     char infoLog[512];
 
@@ -30,8 +45,8 @@ int triangle_lesson(void)
     unsigned int vertexShader;
     unsigned int fragmentShader;
 
-    vertexShader = compile_shader(tVertexShaderSource, GL_VERTEX_SHADER);
-    fragmentShader = compile_shader(tFragmentShaderSource, GL_FRAGMENT_SHADER);
+    vertexShader = compile_shader(rVertexShaderSource, GL_VERTEX_SHADER);
+    fragmentShader = compile_shader(rFragmentShaderSource, GL_FRAGMENT_SHADER);
 
     // 2. create program with shaders
     unsigned int shaderProgram;
@@ -55,15 +70,19 @@ int triangle_lesson(void)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    unsigned int VAO, VBO;
+    unsigned int VAO, VBO, EBO;
 
+    glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(tVertices), tVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rVertices), rVertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(rIndices), rIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
@@ -78,7 +97,7 @@ int triangle_lesson(void)
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
