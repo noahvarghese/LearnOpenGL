@@ -1,5 +1,5 @@
 CC = gcc
-LINKS = -lGL -lglfw -lX11 -lpthread -lXrandr -lXi -ldl
+LINKS = -lGL -lglfw -lX11 -lpthread -lXrandr -lXi -ldl -lm
 CFLAGS=-Werror -Wall
 OUTPUT = ./output/main.o
 

@@ -43,7 +43,7 @@ int main(int argc, char **argv)
             {
                 render_loop = two_triangles_3_lesson;
             }
-            else if (!strcmp(argv[i], "uniforms"))
+            else if (!strcmp(argv[i], "uniform"))
             {
                 render_loop = uniforms_lesson;
             }
@@ -64,6 +64,6 @@ int main(int argc, char **argv)
     }
 
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
-    fprintf(stderr, "\n[ HELP ]\n --examples\tone of the following:\n\t\ttriangle\n\t\trectangle\n\t\ttwo_triangles_1\n\t\ttwo_triangles_2\n\t\ttwo_triangles_3\n\t\tuniforms\n");
+    fprintf(stderr, "\n[ HELP ]\n --example\tone of the following:\n\t\ttriangle\n\t\trectangle\n\t\ttwo_triangles_1\n\t\ttwo_triangles_2\n\t\ttwo_triangles_3\n\t\tuniforms\n");
     return 1;
 }

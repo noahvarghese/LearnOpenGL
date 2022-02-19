@@ -65,7 +65,7 @@ int two_triangles_3_lesson(void)
     {
         glGetProgramInfoLog(yShaderProgram, 512, NULL, infoLog);
         const char *message = str_concat("Shader compilation failed\n", infoLog);
-        print_error(message);
+        error(message);
     }
 
     unsigned int oShaderProgram;
@@ -79,7 +79,7 @@ int two_triangles_3_lesson(void)
     {
         glGetProgramInfoLog(oShaderProgram, 512, NULL, infoLog);
         const char *message = str_concat("Shader compilation failed\n", infoLog);
-        print_error(message);
+        error(message);
     }
 
     // 3. clearnup shader resources

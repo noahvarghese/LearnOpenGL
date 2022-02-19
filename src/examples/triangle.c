@@ -48,7 +48,7 @@ int triangle_lesson(void)
     {
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
         const char *message = str_concat("Shader compilation failed\n", infoLog);
-        print_error(message);
+        error(message);
     }
 
     // 3. clearnup shader resources

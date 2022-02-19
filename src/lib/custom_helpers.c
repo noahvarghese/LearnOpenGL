@@ -10,9 +10,10 @@ void process_input(GLFWwindow *window)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void print_error(const char *message)
+void error(const char *message)
 {
     fprintf(stderr, "[ ERROR ]: %s\n", message);
+    exit(1);
 }
 
 const char *str_concat(const char *str1, const char *str2)
@@ -48,7 +49,7 @@ void check_shader_compilation(unsigned int shader)
     {
         glGetShaderInfoLog(shader, 512, NULL, infoLog);
         const char *message = str_concat("Shader compilation failed\n", infoLog);
-        print_error(message);
+        error(message);
     }
 }
 
@@ -78,24 +79,21 @@ GLFWwindow *init_window()
 
     if (!glfwInit())
     {
-        print_error("Unable to init glfw");
-        exit(1);
+        error("Unable to init glfw");
     }
 
     GLFWwindow *window = open_window();
 
     if (window == NULL)
     {
-        print_error("Failed to create GLFW window\nPlease reboot and try again.");
-        exit(1);
+        error("Failed to create GLFW window\nPlease reboot and try again.");
     }
 
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        print_error("Failed to initialize GLAD");
-        exit(1);
+        error("Failed to initialize GLAD");
     }
 
     framebuffer_size_callback(window, 800, 600);
