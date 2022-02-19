@@ -1,5 +1,5 @@
 #include "custom_helpers.h"
-#include "triangle.h"
+#include "examples/triangle.h"
 
 float tVertices[] = {
     -0.5f, -0.5f, 0.0f,
