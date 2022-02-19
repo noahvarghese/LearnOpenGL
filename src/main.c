@@ -4,6 +4,7 @@
 #include "triangle.h"
 #include "rectangle.h"
 #include "two_triangles_1.h"
+#include "two_triangles_2.h"
 
 int main(int argc, char **argv)
 {
@@ -25,6 +26,10 @@ int main(int argc, char **argv)
         {
             render_loop = two_triangles_1_lesson;
         }
+        else if (!strcmp(argv[i], "two_triangles_2"))
+        {
+            render_loop = two_triangles_2_lesson;
+        }
 
         if (render_loop != NULL)
         {
@@ -41,6 +46,6 @@ int main(int argc, char **argv)
     }
 
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
-    fprintf(stderr, "[ HELP ]: Options are:\n\ttriangle\n\trectangle\n\ttwo_triangles_1\n");
+    fprintf(stderr, "[ HELP ]: Options are:\n\ttriangle\n\trectangle\n\ttwo_triangles_1\n\ttwo_triangles_2\n");
     return 1;
 }
