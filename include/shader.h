@@ -6,8 +6,8 @@
 
 typedef struct
 {
-    char *vertexCode;
-    char *fragmentCode;
+    const char *vertexCode;
+    const char *fragmentCode;
     FILE vShaderFile;
     FILE fShaderFile;
 } Shader;
