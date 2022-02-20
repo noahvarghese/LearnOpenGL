@@ -7,6 +7,7 @@
 #include "examples/two_triangles_2.h"
 #include "examples/two_triangles_3.h"
 #include "examples/uniforms.h"
+#include "examples/more_attributes.h"
 
 int main(int argc, char **argv)
 {
@@ -47,6 +48,10 @@ int main(int argc, char **argv)
             {
                 render_loop = uniforms_lesson;
             }
+            else if (!strcmp(argv[i], "attributes"))
+            {
+                render_loop = more_attributes_lesson;
+            }
 
             if (render_loop != NULL)
             {
@@ -63,7 +68,17 @@ int main(int argc, char **argv)
         return res;
     }
 
+    const char *help = "\n[ HELP ]\n"
+                       "--example\tone of the following:\n"
+                       "\t\ttriangle\n"
+                       "\t\trectangle\n"
+                       "\t\ttwo_triangles_1\n"
+                       "\t\ttwo_triangles_2\n"
+                       "\t\ttwo_triangles_3\n"
+                       "\t\tuniforms\n"
+                       "\t\tattributes\n";
+
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
-    fprintf(stderr, "\n[ HELP ]\n --example\tone of the following:\n\t\ttriangle\n\t\trectangle\n\t\ttwo_triangles_1\n\t\ttwo_triangles_2\n\t\ttwo_triangles_3\n\t\tuniforms\n");
+    fprintf(stderr, help);
     return 1;
 }
