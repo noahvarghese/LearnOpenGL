@@ -8,6 +8,7 @@
 #include "examples/two_triangles_3.h"
 #include "examples/uniforms.h"
 #include "examples/more_attributes.h"
+#include "examples/invert_triangle.h"
 
 int main(int argc, char **argv)
 {
@@ -51,6 +52,10 @@ int main(int argc, char **argv)
             else if (!strcmp(argv[i], "attributes"))
             {
                 render_loop = more_attributes_lesson;
+            }
+            else if (!strcmp(argv[i], "invert"))
+            {
+                render_loop = invert_triangle_lesson;
             }
 
             if (render_loop != NULL)
