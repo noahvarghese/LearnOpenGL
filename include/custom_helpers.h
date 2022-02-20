@@ -12,7 +12,7 @@
 void process_input(GLFWwindow *window);
 void error(const char *message);
 const char *str_concat(const char *str1, const char *str2);
-unsigned int compile_shader(const char *shaderSource, int shaderType);
+unsigned int compile_shader(const char *shaderSource, GLenum shaderType);
 GLFWwindow *init_window();
 
 #endif

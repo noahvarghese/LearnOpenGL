@@ -53,7 +53,7 @@ void check_shader_compilation(unsigned int shader)
     }
 }
 
-unsigned int compile_shader(const char *shaderSource, int shaderType)
+unsigned int compile_shader(const char *shaderSource, GLenum shaderType)
 {
     unsigned int shader;
     shader = glCreateShader(shaderType);
