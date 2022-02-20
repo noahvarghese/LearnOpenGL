@@ -64,7 +64,7 @@ int main(int argc, char **argv)
                 render_loop = horizontal_offset_lesson;
             }
 
-            else if (!strcmp(argv[i], "vert_color"))
+            else if (!strcmp(argv[i], "vertex_as_color"))
             {
                 render_loop = vert_color_lesson;
             }
@@ -92,7 +92,10 @@ int main(int argc, char **argv)
                        "\t\ttwo_triangles_2\n"
                        "\t\ttwo_triangles_3\n"
                        "\t\tuniform\n"
-                       "\t\tattributes\n";
+                       "\t\tattributes\n"
+                       "\t\tinvert\n"
+                       "\t\thorizontal\n"
+                       "\t\tvertex_as_color\n";
 
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
     fprintf(stderr, help);
