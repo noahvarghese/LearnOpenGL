@@ -16,6 +16,7 @@ const char *uFragShaderSource = "#version 460 core\n"
                                 "}\n";
 
 float uVertices[] = {
+    // postitions
     -0.5f, 0.3f, -1.0f,
     0.0f, 0.8f, 0.0f,
     0.7f, 0.5f, 1.0f};
@@ -81,9 +82,10 @@ int uniforms_lesson(void)
         const char *uniformName = "vertexColor";
         int vertexColorLocation = glGetUniformLocation(shaderProgram, uniformName);
 
-        if (!vertexColorLocation)
+        if (vertexColorLocation == -1)
         {
-            error(str_concat("Failed to get unform location ", uniformName));
+            const char *message = "Failed to get uniform location: ";
+            error(str_concat(message, uniformName));
         }
 
         glUseProgram(shaderProgram);
