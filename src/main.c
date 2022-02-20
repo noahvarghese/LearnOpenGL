@@ -10,6 +10,7 @@
 #include "examples/more_attributes.h"
 #include "examples/invert_triangle.h"
 #include "examples/horizontal_offset.h"
+#include "examples/vert_color.h"
 
 int main(int argc, char **argv)
 {
@@ -61,6 +62,11 @@ int main(int argc, char **argv)
             else if (!strcmp(argv[i], "horizontal"))
             {
                 render_loop = horizontal_offset_lesson;
+            }
+
+            else if (!strcmp(argv[i], "vert_color"))
+            {
+                render_loop = vert_color_lesson;
             }
 
             if (render_loop != NULL)
