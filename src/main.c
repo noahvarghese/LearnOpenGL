@@ -75,7 +75,7 @@ int main(int argc, char **argv)
                        "\t\ttwo_triangles_1\n"
                        "\t\ttwo_triangles_2\n"
                        "\t\ttwo_triangles_3\n"
-                       "\t\tuniforms\n"
+                       "\t\tuniform\n"
                        "\t\tattributes\n";
 
     fprintf(stderr, "[ ERROR ]: No render loop assigned\n");

@@ -23,12 +23,21 @@ const char *str_concat(const char *str1, const char *str2)
 
     if (new_str == NULL)
     {
-        fprintf(stderr, "Fatal: failed to allocate %zu bytes.\n", size);
-        abort();
+        fprintf(stderr, "[ ERROR ]: failed to allocate %zu bytes.\n", size);
+        exit(1);
     }
 
-    strcpy(new_str, str1);
-    strcpy(new_str, str2);
+    for (int i = 0; i < strlen(str1); i++)
+    {
+        new_str[i] = str1[i];
+    }
+
+    for (int i = 0; i < strlen(str2); i++)
+    {
+        new_str[strlen(str1) + i] = str2[i];
+    }
+
+    new_str[size] = '\0';
 
     return new_str;
 }
