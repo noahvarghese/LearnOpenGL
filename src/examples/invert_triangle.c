@@ -47,6 +47,8 @@ int invert_triangle_lesson(void)
         glfwPollEvents();
     }
 
+    destroy_shader(s);
+
     glfwTerminate();
     return 0;
 }
