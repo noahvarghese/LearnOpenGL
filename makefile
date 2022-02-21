@@ -4,6 +4,6 @@ CFLAGS=-Werror -Wall
 OUTPUT = ./bin/main.bin
 
 build:
-	if [[ -z ${TERM+x} ]]; then clear; fi
+	if [ -z ${TERM+x} ]; then clear; fi
 	echo Building executable $(OUTPUT)
 	$(CC) $(CFLAGS) -o $(OUTPUT) src/*.c src/**/*.c -I ./include $(LINKS)
