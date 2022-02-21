@@ -97,7 +97,7 @@ int main(int argc, char **argv)
                        "\t\thorizontal\n"
                        "\t\tvertex_as_color\n";
 
-    fprintf(stderr, "[ ERROR ]: No render loop assigned\n");
-    fprintf(stderr, help);
+    fprintf(stderr,"%s", "[ ERROR ]: No render loop assigned\n");
+    fprintf(stderr, "%s", help);
     return 1;
 }

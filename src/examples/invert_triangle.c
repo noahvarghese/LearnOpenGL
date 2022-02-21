@@ -10,7 +10,7 @@ int invert_triangle_lesson(void)
 {
     const char *uniformName = "vertexColor";
     GLFWwindow *window = init_window();
-    shader *s = init_shader("./src/shaders/invert_triangle.vert", "./src/shaders/invert_triangle.frag");
+    shader *s = init_shader("./bin/assets/shaders/invert_triangle.vert", "./bin/assets/shaders/invert_triangle.frag");
 
     unsigned int VAO, VBO;
 

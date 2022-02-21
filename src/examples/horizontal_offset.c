@@ -9,7 +9,7 @@ float hoVertices[] = {
 int horizontal_offset_lesson(void)
 {
     GLFWwindow *window = init_window();
-    shader *s = init_shader("./src/shaders/horizontal_offset.vert", "./src/shaders/horizontal_offset.frag");
+    shader *s = init_shader("./bin/assets/shaders/horizontal_offset.vert", "./bin/assets/shaders/horizontal_offset.frag");
 
     unsigned int VAO, VBO;
 

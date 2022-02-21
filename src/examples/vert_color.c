@@ -9,7 +9,7 @@ float vVertices[] = {
 int vert_color_lesson(void)
 {
     GLFWwindow *window = init_window();
-    shader *s = init_shader("./src/shaders/vert_color.vert", "./src/shaders/vert_color.frag");
+    shader *s = init_shader("./bin/assets/shaders/vert_color.vert", "./bin/assets/shaders/vert_color.frag");
 
     unsigned int VAO, VBO;
 
