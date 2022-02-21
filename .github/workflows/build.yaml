@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt-get install libglfw3 libglfw3-dev cmake libx11-dev
+        run: sudo apt-get install libglfw3 libglfw3-dev cmake libx11-dev libxi-dev
       - name: build
         run: make
