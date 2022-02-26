@@ -11,6 +11,7 @@
 #include "examples/invert_triangle.h"
 #include "examples/horizontal_offset.h"
 #include "examples/vert_color.h"
+#include "examples/smiling_box.h"
 
 int main(int argc, char **argv)
 {
@@ -63,10 +64,13 @@ int main(int argc, char **argv)
             {
                 render_loop = horizontal_offset_lesson;
             }
-
             else if (!strcmp(argv[i], "vertex_as_color"))
             {
                 render_loop = vert_color_lesson;
+            }
+            else if (!strcmp(argv[i], "smiling_box"))
+            {
+                render_loop = smiling_box_lesson;
             }
 
             if (render_loop != NULL)
@@ -95,9 +99,10 @@ int main(int argc, char **argv)
                        "\t\tattributes\n"
                        "\t\tinvert\n"
                        "\t\thorizontal\n"
-                       "\t\tvertex_as_color\n";
+                       "\t\tvertex_as_color\n"
+                       "\t\tsmiling_box\n";
 
-    fprintf(stderr,"%s", "[ ERROR ]: No render loop assigned\n");
+    fprintf(stderr, "%s", "[ ERROR ]: No render loop assigned\n");
     fprintf(stderr, "%s", help);
     return 1;
 }
