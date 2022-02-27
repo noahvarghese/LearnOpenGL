@@ -2,6 +2,8 @@
 
 #define TRANSFORMATION_H
 
+#define DEBUG
+
 #include "cglm/cglm.h"
 
 int transformation_lesson(void);
