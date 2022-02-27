@@ -12,6 +12,7 @@
 #include "examples/horizontal_offset.h"
 #include "examples/vert_color.h"
 #include "examples/smiling_box.h"
+#include "examples/transformations.h"
 
 int main(int argc, char **argv)
 {
@@ -72,6 +73,10 @@ int main(int argc, char **argv)
             {
                 render_loop = smiling_box_lesson;
             }
+            else if (!strcmp(argv[i], "transformation"))
+            {
+                render_loop = transformation_lesson;
+            }
 
             if (render_loop != NULL)
             {
@@ -100,7 +105,8 @@ int main(int argc, char **argv)
                        "\t\tinvert\n"
                        "\t\thorizontal\n"
                        "\t\tvertex_as_color\n"
-                       "\t\tsmiling_box\n";
+                       "\t\tsmiling_box\n"
+                       "\t\ttransformation\n";
 
     fprintf(stderr, "%s", "[ ERROR ]: No render loop assigned\n");
     fprintf(stderr, "%s", help);

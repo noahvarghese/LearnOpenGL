@@ -10,6 +10,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt-get install libglfw3 libglfw3-dev cmake libx11-dev libxi-dev
+        run: sudo apt-get install libglfw3 libglfw3-dev libx11-dev libxi-dev cmake autoconf libtool
+      - name: Install cglm
+        run: |
+	        wget https://github.com/recp/cglm/archive/refs/tags/v$(CGLM_VERSION).tar.gz \
+	        tar -xzf v$(CGLM_VERSION).tar.gz \
+	        rm ./v$(CGLM_VERSION).tar.gz \ 
+	        cd cglm-$(CGLM_VERSION) \
+          sh ./autogen.sh \
+          ./configure \
+          make \
+          make check \
+          sudo make install \
+          cd .. \
+	        rm -rf cglm-$(CGLM_VERSION)
       - name: build
         run: make
