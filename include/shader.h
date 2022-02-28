@@ -4,6 +4,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <cglm/cglm.h>
 #include "custom_helpers.h"
 
 typedef struct shader
@@ -15,6 +16,7 @@ typedef struct shader
     void (*setUniformFloat)(struct shader *self, const char *uniformVarName, float val);
     void (*setUniformV3F)(struct shader *self, const char *uniformVarName, float v1, float v2, float v3);
     void (*setUniformV4F)(struct shader *self, const char *uniformVarName, float v1, float v2, float v3, float v4);
+    void (*setUniformM4F)(struct shader *self, const char *uniformVarName, mat4 mat);
 } shader;
 
 shader *init_shader(const char *vertex, const char *fragment);

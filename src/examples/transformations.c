@@ -13,11 +13,6 @@ unsigned int smilingBoxIndices[] = {
 
 int transformation_lesson(void)
 {
-    mat4 trans;
-    glm_mat4_identity(trans);
-    glm_rotate(trans, glm_rad(90.0f), (vec3){0.0f, 0.0f, 1.0f});
-    glm_scale(trans, (vec3){0.5f, 0.5f, 0.5f});
-
     GLFWwindow *window = init_window();
 
     shader *s = init_shader("./bin/assets/shaders/smiling_box.vert", "./bin/assets/shaders/smiling_box.frag");
@@ -91,6 +86,13 @@ int transformation_lesson(void)
         s->setUniformInt(s, "texture0", 0);
         s->setUniformInt(s, "texture1", 1);
 
+        mat4 transform;
+        glm_mat4_identity(transform);
+        glm_translate(transform, (vec3){0.5f, -0.5f, 0.0f});
+        glm_rotate(transform, (float)glfwGetTime(), (vec3){0.0f, 0.0f, 1.0f});
+
+        s->setUniformM4F(s, "transform", transform);
+
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, containerTexture);
         glActiveTexture(GL_TEXTURE1);
@@ -98,6 +100,15 @@ int transformation_lesson(void)
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        glm_mat4_identity(transform);
+        glm_translate(transform, (vec3){-0.5f, 0.5f, 0.0f});
+        vec3 scale = {0.0f, 0.0f, 0.0f};
+        glm_vec3_scale((vec3){0.5f, 0.5f, 1.0f}, (float)fabs(sin(glfwGetTime())) + 0.25f, scale);
+        glm_scale(transform, scale);
+        s->setUniformM4F(s, "transform", transform);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);

@@ -112,6 +112,12 @@ void setUniformV4F(shader *self, const char *uniformVarName, float v1, float v2,
     glUniform4f(location, v1, v2, v3, v4);
 }
 
+void setUniformM4F(shader *self, const char *uniformVarName, mat4 mat)
+{
+    int location = getUniformLocation(self->ID, uniformVarName);
+    glUniformMatrix4fv(location, 1, GL_FALSE, (float *)mat);
+}
+
 shader *init_shader(const char *vertexShaderFilePath, const char *fragmentShaderFilePath)
 {
 
@@ -164,6 +170,7 @@ shader *init_shader(const char *vertexShaderFilePath, const char *fragmentShader
     s->setUniformInt = setUniformInt;
     s->setUniformV3F = setUniformV3F;
     s->setUniformV4F = setUniformV4F;
+    s->setUniformM4F = setUniformM4F;
 
     return s;
 }
