@@ -2,6 +2,8 @@
 
 #define COORDINATE_H
 
+#include <sys/time.h>
+
 #define DEBUG
 
 #include <cglm/cglm.h>

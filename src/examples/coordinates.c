@@ -64,14 +64,49 @@ int coordinate_lesson(void)
     s->setUniformM4F(s, "view", view);
     s->setUniformM4F(s, "projection", projection);
 
+    float visibility = 0.5f;
+    float change = 0.005f;
+    // milliseconds
+    int interval = 5;
+
+    struct timeval prevTime;
+    gettimeofday(&prevTime, NULL);
+
     while (!glfwWindowShouldClose(window))
     {
+        struct timeval currTime;
+        gettimeofday(&currTime, NULL);
+
+        unsigned int diff;
+        diff = (unsigned int)(((10000.0 * (currTime.tv_sec - prevTime.tv_sec)) + (currTime.tv_usec - prevTime.tv_usec)) / 10000.0);
+
+        if (diff > interval)
+        {
+            float t = (float)(diff * (double)change);
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+            {
+                if ((visibility + t) < 0.99f)
+                {
+                    visibility += t;
+                }
+            }
+            else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+            {
+                if ((visibility - t) > 0.01f)
+                {
+                    visibility -= t;
+                }
+            }
+            prevTime = currTime;
+        }
+
         process_input(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         s->use(s);
+        s->setUniformFloat(s, "visibility", visibility);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, containerTexture);
