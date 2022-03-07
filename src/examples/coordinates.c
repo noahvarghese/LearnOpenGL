@@ -57,8 +57,12 @@ int coordinate_lesson(void)
     // move scene backwards
     glm_translate(view, (vec3){0.0f, 0.0f, -3.0f});
 
+    int width, height;
+
+    glfwGetWindowSize(window, &width, &height);
+
     // set camera
-    glm_perspective(glm_rad(45.0f), 800.0f / 600.0f, 0.1f, 100.0f, projection);
+    glm_perspective(glm_rad(45.0f), (float)(width / height), 0.1f, 100.0f, projection);
 
     s->setUniformM4F(s, "model", model);
     s->setUniformM4F(s, "view", view);
