@@ -13,6 +13,7 @@
 #include "examples/vert_color.h"
 #include "examples/smiling_box.h"
 #include "examples/transformations.h"
+#include "examples/coordinates.h"
 
 int main(int argc, char **argv)
 {
@@ -76,6 +77,10 @@ int main(int argc, char **argv)
             else if (!strcmp(argv[i], "transformation"))
             {
                 render_loop = transformation_lesson;
+            }
+            else if (!strcmp(argv[i], "coordinates"))
+            {
+                render_loop = coordinate_lesson;
             }
 
             if (render_loop != NULL)
