@@ -2,8 +2,8 @@
 
 #define VERT_H
 
-#include "custom_helpers.h"
-#include "shader.h"
+#include "lib/custom_helpers.h"
+#include "lib/shader.h"
 int vert_color_lesson(void);
 
 #endif

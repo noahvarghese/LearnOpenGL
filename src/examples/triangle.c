@@ -1,4 +1,4 @@
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 #include "examples/triangle.h"
 
 float tVertices[] = {

@@ -1,4 +1,4 @@
-#include "texture.h"
+#include "lib/texture.h"
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 

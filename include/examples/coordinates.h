@@ -7,9 +7,9 @@
 #define DEBUG
 
 #include <cglm/cglm.h>
-#include "shader.h"
-#include "texture.h"
-#include "custom_helpers.h"
+#include "lib/shader.h"
+#include "lib/texture.h"
+#include "lib/custom_helpers.h"
 
 int coordinate_lesson(void);
 

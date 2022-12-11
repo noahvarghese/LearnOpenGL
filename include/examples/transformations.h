@@ -6,9 +6,9 @@
 
 #include <sys/time.h>
 #include <cglm/cglm.h>
-#include "shader.h"
-#include "texture.h"
-#include "custom_helpers.h"
+#include "lib/shader.h"
+#include "lib/texture.h"
+#include "lib/custom_helpers.h"
 
 int transformation_lesson(void);
 

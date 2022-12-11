@@ -2,7 +2,7 @@
 
 #define RECTANGLE_H
 
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 int rectangle_lesson(void);
 
 #endif

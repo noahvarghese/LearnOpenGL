@@ -3,7 +3,7 @@
 #define UNIFORMS_H
 
 #include <math.h>
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 int uniforms_lesson(void);
 
 #endif

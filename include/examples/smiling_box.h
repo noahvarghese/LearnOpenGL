@@ -2,9 +2,9 @@
 
 #define SMILING_BOX_H
 
-#include "shader.h"
-#include "texture.h"
-#include "custom_helpers.h"
+#include "lib/shader.h"
+#include "lib/texture.h"
+#include "lib/custom_helpers.h"
 int smiling_box_lesson(void);
 
 #endif

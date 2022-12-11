@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "lib/shader.h"
 
 char *read_file(const char *fileName)
 {

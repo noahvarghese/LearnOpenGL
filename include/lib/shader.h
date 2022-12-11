@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <cglm/cglm.h>
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 
 typedef struct shader
 {

@@ -1,4 +1,4 @@
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 
 void process_input(GLFWwindow *window)
 {

@@ -2,7 +2,7 @@
 
 #define TRIANGLE_H
 
-#include "custom_helpers.h"
+#include "lib/custom_helpers.h"
 int triangle_lesson(void);
 
 #endif
