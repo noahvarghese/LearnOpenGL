@@ -1,15 +1,15 @@
-#include "examples/horizontal_offset.h"
+#include "1.getting_started/3.6.shaders_exercise3/shaders_exercise3.h"
 
-float hoVertices[] = {
+float vVertices[] = {
     // postitions
     -0.5f, 0.3f, -1.0f,
     0.0f, 0.8f, 0.0f,
     0.7f, 0.5f, 1.0f};
 
-int horizontal_offset_lesson(void)
+int vert_color_lesson(void)
 {
     GLFWwindow *window = init_window();
-    shader *s = init_shader("./bin/assets/shaders/horizontal_offset.vert", "./bin/assets/shaders/horizontal_offset.frag");
+    shader_t *s = init_shader("./bin/assets/shaders/vert_color.vert", "./bin/assets/shaders/vert_color.frag");
 
     unsigned int VAO, VBO;
 
@@ -19,7 +19,7 @@ int horizontal_offset_lesson(void)
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hoVertices), hoVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vVertices), vVertices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
@@ -32,12 +32,7 @@ int horizontal_offset_lesson(void)
         // Must clear before drawing (not after)
         glClear(GL_COLOR_BUFFER_BIT);
 
-        float time = glfwGetTime();
-        float green = (sin(time) / 2.0f) + 0.5f;
-
         s->use(s);
-        s->setUniformV4F(s, "vertexColor", 0.5f, green, 0.5f, 1.0f);
-        s->setUniformFloat(s, "horizontalOffset", 0.25f);
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);

@@ -6,8 +6,8 @@ OUTPUT := ./bin/main.bin
 
 CGLM_VERSION := 0.8.4
 
-build: clear
-	$(CC) $(CFLAGS) -o $(OUTPUT) src/*.c src/**/*.c -I ./include $(LINKS)
+build: 
+	$(CC) $(CFLAGS) -o $(OUTPUT) src/*.c src/**/*.c src/**/**/*.c -I ./include $(LINKS)
 
-clear:
-	if [ -n "${TERM}" ]; then clear; fi
+build-debug:
+	$(CC) -g $(CFLAGS) -o $(OUTPUT) src/*.c src/**/*.c src/**/**/*.c -I ./include $(LINKS)

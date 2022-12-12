@@ -10,38 +10,6 @@ void process_input(GLFWwindow *window)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void error(const char *message)
-{
-    fprintf(stderr, "[ ERROR ]: %s\n", message);
-    exit(1);
-}
-
-const char *str_concat(const char *str1, const char *str2)
-{
-    size_t size = strlen(str1) + strlen(str2);
-    char *new_str = malloc(size);
-
-    if (new_str == NULL)
-    {
-        fprintf(stderr, "[ ERROR ]: failed to allocate %zu bytes.\n", size);
-        exit(1);
-    }
-
-    for (int i = 0; i < strlen(str1); i++)
-    {
-        new_str[i] = str1[i];
-    }
-
-    for (int i = 0; i < strlen(str2); i++)
-    {
-        new_str[strlen(str1) + i] = str2[i];
-    }
-
-    new_str[size] = '\0';
-
-    return new_str;
-}
-
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
     glViewport(0, 0, width, height);
@@ -62,6 +30,9 @@ void check_shader_compilation(unsigned int shader)
     }
 }
 
+/**
+ * Used when shaders were defined as strings within code instead of separate files
+ */
 unsigned int compile_shader(const char *shaderSource, GLenum shaderType)
 {
     unsigned int shader;
@@ -106,7 +77,7 @@ GLFWwindow *init_window()
     }
 
     framebuffer_size_callback(window, 800, 600);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, &framebuffer_size_callback);
 
     return window;
 }

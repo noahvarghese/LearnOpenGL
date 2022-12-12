@@ -1,6 +1,6 @@
 #include "lib/shader.h"
 
-char *read_file(const char *fileName)
+static char *read_file(const char *fileName)
 {
     FILE *file = fopen(fileName, "r");
 
@@ -35,7 +35,7 @@ char *read_file(const char *fileName)
     return buffer;
 }
 
-unsigned int compile_glsl_shader(const char *fileName, GLenum shaderType)
+static unsigned int compile_glsl_shader(const char *fileName, GLenum shaderType)
 {
     const char *source = read_file(fileName);
 
@@ -60,7 +60,7 @@ unsigned int compile_glsl_shader(const char *fileName, GLenum shaderType)
     return shader;
 }
 
-int getUniformLocation(int ID, const char *variableName)
+static int getUniformLocation(int ID, const char *variableName)
 {
     int uniformVarLocation = glGetUniformLocation(ID, variableName);
 
@@ -77,48 +77,48 @@ int getUniformLocation(int ID, const char *variableName)
 /*                         OOP  - BEWARE                         */
 /*****************************************************************/
 
-void use(shader *self)
+static void use(shader_t *self)
 {
     glUseProgram(self->ID);
 }
 
-void setUniformBool(shader *self, const char *uniformVarName, bool val)
+static void setUniformBool(shader_t *self, const char *uniformVarName, bool val)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniform1i(location, (int)val);
 }
 
-void setUniformInt(shader *self, const char *uniformVarName, int val)
+static void setUniformInt(shader_t *self, const char *uniformVarName, int val)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniform1i(location, val);
 }
 
-void setUniformFloat(shader *self, const char *uniformVarName, float val)
+static void setUniformFloat(shader_t *self, const char *uniformVarName, float val)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniform1f(location, val);
 }
 
-void setUniformV3F(shader *self, const char *uniformVarName, float v1, float v2, float v3)
+static void setUniformV3F(shader_t *self, const char *uniformVarName, float v1, float v2, float v3)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniform3f(location, v1, v2, v3);
 }
 
-void setUniformV4F(shader *self, const char *uniformVarName, float v1, float v2, float v3, float v4)
+static void setUniformV4F(shader_t *self, const char *uniformVarName, float v1, float v2, float v3, float v4)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniform4f(location, v1, v2, v3, v4);
 }
 
-void setUniformM4F(shader *self, const char *uniformVarName, mat4 mat)
+static void setUniformM4F(shader_t *self, const char *uniformVarName, mat4 mat)
 {
     int location = getUniformLocation(self->ID, uniformVarName);
     glUniformMatrix4fv(location, 1, GL_FALSE, (float *)mat);
 }
 
-shader *init_shader(const char *vertexShaderFilePath, const char *fragmentShaderFilePath)
+shader_t *init_shader(const char *vertexShaderFilePath, const char *fragmentShaderFilePath)
 {
 
     // 1. get data from file paths provided
@@ -155,7 +155,7 @@ shader *init_shader(const char *vertexShaderFilePath, const char *fragmentShader
     glDeleteShader(fragmentShaderID);
 
     // 8. create struct
-    shader *s = (shader *)malloc(sizeof(shader));
+    shader_t *s = (shader_t *)malloc(sizeof(shader_t));
 
     if (s == NULL)
     {
@@ -175,7 +175,7 @@ shader *init_shader(const char *vertexShaderFilePath, const char *fragmentShader
     return s;
 }
 
-void destroy_shader(shader *self)
+void destroy_shader(shader_t *self)
 {
     free(self);
 }

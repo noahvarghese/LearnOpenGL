@@ -1,6 +1,6 @@
-#ifndef COORDINATE_H
+#ifndef COORDINATE_2D_H
 
-#define COORDINATE_H
+#define COORDINATE_2D_H
 
 #include <sys/time.h>
 
@@ -11,6 +11,6 @@
 #include "lib/texture.h"
 #include "lib/custom_helpers.h"
 
-int coordinate_lesson(void);
+int coordinate_lesson_2d(void);
 
 #endif

@@ -1,19 +1,21 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
-#include "examples/triangle.h"
-#include "examples/rectangle.h"
-#include "examples/two_triangles_1.h"
-#include "examples/two_triangles_2.h"
-#include "examples/two_triangles_3.h"
-#include "examples/uniforms.h"
-#include "examples/more_attributes.h"
-#include "examples/invert_triangle.h"
-#include "examples/horizontal_offset.h"
-#include "examples/vert_color.h"
-#include "examples/smiling_box.h"
-#include "examples/transformations.h"
-#include "examples/coordinates.h"
+#include "1.getting_started/2.1.hello_triangle/hello_triangle.h"
+#include "1.getting_started/2.2.hello_triangle_indexed/hello_triangle_indexed.h"
+#include "1.getting_started/2.3.hello_triangle_exercise1/hello_triangle_exercise1.h"
+#include "1.getting_started/2.4.hello_triangle_exercise2/hello_triangle_exercise2.h"
+#include "1.getting_started/2.5.hello_triangle_exercise3/hello_triangle_exercise3.h"
+#include "1.getting_started/3.1.shaders_uniform/shaders_uniform.h"
+#include "1.getting_started/3.2.shaders_interpolation/shaders_interpolation.h"
+#include "1.getting_started/3.4.shaders_exercise1/shaders_exercise1.h"
+#include "1.getting_started/3.5.shaders_exercise2/shaders_exercise2.h"
+#include "1.getting_started/3.6.shaders_exercise3/shaders_exercise3.h"
+#include "1.getting_started/4.6.textures_exercise4/textures_exercise4.h"
+#include "1.getting_started/5.2.transformations_exercise2/transformations_exercise2.h"
+#include "1.getting_started/6.1.coordinate_systems/coordinate_systems.h"
+#include "1.getting_started/6.2.coordinate_systems_depth/coordinate_systems_depth.h"
+
 
 int main(int argc, char **argv)
 {
@@ -78,9 +80,13 @@ int main(int argc, char **argv)
             {
                 render_loop = transformation_lesson;
             }
-            else if (!strcmp(argv[i], "coordinates"))
+            else if (!strcmp(argv[i], "2d_coordinates"))
             {
-                render_loop = coordinate_lesson;
+                render_loop = coordinate_lesson_2d;
+            }
+            else if (!strcmp(argv[i], "3d_coordinates"))
+            {
+                render_loop = coordinate_lesson_3d;
             }
 
             if (render_loop != NULL)
@@ -111,7 +117,9 @@ int main(int argc, char **argv)
                        "\t\thorizontal\n"
                        "\t\tvertex_as_color\n"
                        "\t\tsmiling_box\n"
-                       "\t\ttransformation\n";
+                       "\t\ttransformation\n"
+                       "\t\t2d_coordinates\n"
+                       "\t\t3d_coordinates\n";
 
     fprintf(stderr, "%s", "[ ERROR ]: No render loop assigned\n");
     fprintf(stderr, "%s", help);

@@ -1,4 +1,4 @@
-#include "examples/two_triangles_2.h"
+#include "1.getting_started/2.5.hello_triangle_exercise3/hello_triangle_exercise3.h"
 
 const char *tt3VertexShaderSource = "#version 460 core\n"
                                     "layout (location = 0) in vec3 aPos;\n"

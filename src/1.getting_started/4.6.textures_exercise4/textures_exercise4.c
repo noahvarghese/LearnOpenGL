@@ -1,4 +1,4 @@
-#include "examples/smiling_box.h"
+#include "1.getting_started/4.6.textures_exercise4/textures_exercise4.h"
 
 float color[] = {
     // (254.0f / 255.0f),
@@ -24,10 +24,10 @@ int smiling_box_lesson(void)
 {
     GLFWwindow *window = init_window();
 
-    shader *s = init_shader("./bin/assets/shaders/smiling_box.vert", "./bin/assets/shaders/smiling_box.frag");
+    shader_t *s = init_shader("./bin/assets/shaders/smiling_box.vert", "./bin/assets/shaders/smiling_box.frag");
 
-    unsigned int containerTexture = init_texture_2d("./bin/assets/images/container.jpg", GL_RGB, GL_RGB);
-    unsigned int smileyTexture = init_texture_2d("./bin/assets/images/awesomeface.png", GL_RGBA, GL_RGBA);
+    texture_2d_t *containerTexture = init_texture_2d("./bin/assets/images/container.jpg", GL_RGB, GL_RGB, GL_TEXTURE0);
+    texture_2d_t *smileyTexture = init_texture_2d("./bin/assets/images/awesomeface.png", GL_RGBA, GL_RGBA, GL_TEXTURE1);
 
     unsigned int VAO, VBO, EBO;
 
@@ -78,10 +78,8 @@ int smiling_box_lesson(void)
         s->setUniformInt(s, "texture0", 0);
         s->setUniformInt(s, "texture1", 1);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, containerTexture);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, smileyTexture);
+        containerTexture->bind(containerTexture);
+        smileyTexture->bind(smileyTexture);
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -92,6 +90,8 @@ int smiling_box_lesson(void)
     }
 
     destroy_shader(s);
+    destroy_texture_2d(containerTexture);
+    destroy_texture_2d(smileyTexture);
     glfwTerminate();
     return 0;
 }

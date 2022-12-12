@@ -1,4 +1,4 @@
-#include "examples/more_attributes.h"
+#include "1.getting_started/3.2.shaders_interpolation/shaders_interpolation.h"
 
 float maVertices[] = {
     // postitions       // colors

@@ -1,4 +1,4 @@
-#include "examples/invert_triangle.h"
+#include "1.getting_started/3.4.shaders_exercise1/shaders_exercise1.h"
 
 float itVertices[] = {
     // postitions
@@ -10,7 +10,7 @@ int invert_triangle_lesson(void)
 {
     const char *uniformName = "vertexColor";
     GLFWwindow *window = init_window();
-    shader *s = init_shader("./bin/assets/shaders/invert_triangle.vert", "./bin/assets/shaders/invert_triangle.frag");
+    shader_t *s = init_shader("./bin/assets/shaders/invert_triangle.vert", "./bin/assets/shaders/invert_triangle.frag");
 
     unsigned int VAO, VBO;
 

@@ -1,29 +1,42 @@
-#include "examples/uniforms.h"
+#include "1.getting_started/2.2.hello_triangle_indexed/hello_triangle_indexed.h"
 
-const char *uVertexShaderSource = "#version 460 core\n"
+const char *rVertexShaderSource = "#version 460 core\n"
                                   "layout (location = 0) in vec3 aPos;\n"
                                   "void main()\n"
                                   "{\n"
-                                  "gl_Position = vec4(aPos, 1.0);\n"
-                                  "}\n";
+                                  "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                  "}\0";
 
-const char *uFragShaderSource = "#version 460 core\n"
-                                "out vec4 FragColor;\n"
-                                "uniform vec4 vertexColor;\n"
-                                "void main()\n"
-                                "{\n"
-                                "FragColor = vertexColor;\n"
-                                "}\n";
+const char *rFragmentShaderSource = "#version 460 core\n"
+                                    "out vec4 FragColor;\n"
+                                    "void main()\n"
+                                    "{\n"
+                                    "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+                                    "}\n";
 
-float uVertices[] = {
-    // postitions
-    -0.5f, 0.3f, -1.0f,
-    0.0f, 0.8f, 0.0f,
-    0.7f, 0.5f, 1.0f};
+float rVertices[] = {
+    0.5f,
+    0.5f,
+    0.0f,
+    0.5f,
+    -0.5f,
+    0.0f,
+    -0.5f,
+    -0.5f,
+    0.0f,
+    -0.5f,
+    0.5f,
+    0.0f,
+};
 
-int uniforms_lesson(void)
+unsigned int rIndices[] = {
+    0, 1, 3,
+    1, 2, 3};
+
+int rectangle_lesson(void)
 {
     GLFWwindow *window = init_window();
+
     int success;
     char infoLog[512];
 
@@ -31,8 +44,8 @@ int uniforms_lesson(void)
     unsigned int vertexShader;
     unsigned int fragmentShader;
 
-    vertexShader = compile_shader(uVertexShaderSource, GL_VERTEX_SHADER);
-    fragmentShader = compile_shader(uFragShaderSource, GL_FRAGMENT_SHADER);
+    vertexShader = compile_shader(rVertexShaderSource, GL_VERTEX_SHADER);
+    fragmentShader = compile_shader(rFragmentShaderSource, GL_FRAGMENT_SHADER);
 
     // 2. create program with shaders
     unsigned int shaderProgram;
@@ -56,15 +69,19 @@ int uniforms_lesson(void)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    unsigned int VAO, VBO;
+    unsigned int VAO, VBO, EBO;
 
+    glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(uVertices), uVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rVertices), rVertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(rIndices), rIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
@@ -77,21 +94,9 @@ int uniforms_lesson(void)
         // Must clear before drawing (not after)
         glClear(GL_COLOR_BUFFER_BIT);
 
-        float time = glfwGetTime();
-        float green = (sin(time) / 2.0f) + 0.5f;
-        const char *uniformName = "vertexColor";
-        int vertexColorLocation = glGetUniformLocation(shaderProgram, uniformName);
-
-        if (vertexColorLocation == -1)
-        {
-            const char *message = "Failed to get uniform location: ";
-            error(str_concat(message, uniformName));
-        }
-
         glUseProgram(shaderProgram);
-        glUniform4f(vertexColorLocation, 0.5f, green, 0.5f, 1.0f);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
