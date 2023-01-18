@@ -2,3 +2,4 @@ output/*
 !output/.keep
 *.zip
 .vscode
+bin/main.bin
