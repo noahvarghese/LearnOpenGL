@@ -5,7 +5,7 @@ layout (location = 1) in vec2 aTexCoord;
 
 out vec2 TexCoord;
 
-uniform mat4 model =mat4(
+uniform mat4 model = mat4(
     vec4(1.0, 0.0, 0.0, 0.0),
     vec4(0.0, 1.0, 0.0, 0.0),
     vec4(0.0, 0.0, 1.0, 0.0),
@@ -19,7 +19,7 @@ uniform mat4 view = mat4(
     vec4(0.0, 0.0, 0.0, 1.0)
 );
 
-uniform mat4 projection =  mat4(
+uniform mat4 projection = mat4(
     vec4(1.0, 0.0, 0.0, 0.0),
     vec4(0.0, 1.0, 0.0, 0.0),
     vec4(0.0, 0.0, 1.0, 0.0),
