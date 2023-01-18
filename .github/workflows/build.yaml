@@ -1,28 +1,28 @@
 name: Build
 on:
   push:
-    branches: 
+    branches:
       - "*"
 
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
-        run: sudo apt-get install libglfw3 libglfw3-dev libx11-dev libxi-dev cmake autoconf libtool
+        run: sudo apt-get update && sudo apt-get install libglfw3 libglfw3-dev libx11-dev libxi-dev cmake autoconf libtool
       - name: Install cglm
         run: |
-	        wget https://github.com/recp/cglm/archive/refs/tags/v$(CGLM_VERSION).tar.gz \
-	        tar -xzf v$(CGLM_VERSION).tar.gz \
-	        rm ./v$(CGLM_VERSION).tar.gz \ 
-	        cd cglm-$(CGLM_VERSION) \
-          sh ./autogen.sh \
-          ./configure \
-          make \
-          make check \
-          sudo make install \
-          cd .. \
-	        rm -rf cglm-$(CGLM_VERSION)
+          wget https://github.com/recp/cglm/archive/refs/tags/v0.8.4.tar.gz
+            tar -xzf v0.8.4.tar.gz
+            rm ./v0.8.4.tar.gz
+            cd cglm-0.8.4
+            sh ./autogen.sh
+            ./configure
+            make
+            make check
+            sudo make install
+            cd ..
+            rm -rf cglm-0.8.4
       - name: build
         run: make
