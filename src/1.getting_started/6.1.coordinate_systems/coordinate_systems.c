@@ -1,13 +1,13 @@
 #include "1.getting_started/6.1.coordinate_systems/coordinate_systems.h"
 
-float rVert[] = {
+static float rVert[] = {
     // vertex         // texture coordinate
     0.5f, 0.5f, 0.0f, 0.0f, 0.0f,
     0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
     -0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
     -0.5f, 0.5f, 0.0f, 1.0f, 0.0f};
 
-unsigned int rInd[] = {
+static unsigned int rInd[] = {
     0, 1, 3,
     1, 2, 3};
 

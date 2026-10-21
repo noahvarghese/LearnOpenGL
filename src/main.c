@@ -15,6 +15,8 @@
 #include "1.getting_started/5.2.transformations_exercise2/transformations_exercise2.h"
 #include "1.getting_started/6.1.coordinate_systems/coordinate_systems.h"
 #include "1.getting_started/6.2.coordinate_systems_depth/coordinate_systems_depth.h"
+#include "1.getting_started/6.3.camera/camera.h"
+#include "mandelbrot/mandelbrot.h"
 
 
 int main(int argc, char **argv)
@@ -88,6 +90,14 @@ int main(int argc, char **argv)
             {
                 render_loop = coordinate_lesson_3d;
             }
+            else if (!strcmp(argv[i], "camera"))
+            {
+                render_loop = camera_lesson;
+            }
+            else if (!strcmp(argv[i], "mandelbrot")) 
+            {
+                render_loop = mandelbrot;
+            }
 
             if (render_loop != NULL)
             {
@@ -119,7 +129,9 @@ int main(int argc, char **argv)
                        "\t\tsmiling_box\n"
                        "\t\ttransformation\n"
                        "\t\t2d_coordinates\n"
-                       "\t\t3d_coordinates\n";
+                       "\t\t3d_coordinates\n"
+                       "\t\tcamera\n"
+                       "\t\tmandelbrot\n";
 
     fprintf(stderr, "%s", "[ ERROR ]: No render loop assigned\n");
     fprintf(stderr, "%s", help);

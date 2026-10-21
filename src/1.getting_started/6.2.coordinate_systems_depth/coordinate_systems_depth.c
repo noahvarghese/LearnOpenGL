@@ -1,6 +1,6 @@
 #include "1.getting_started/6.2.coordinate_systems_depth/coordinate_systems_depth.h"
 
-float vertices[] = {
+static float vertices[] = {
      // vertex            // texture coordinate
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -45,7 +45,7 @@ float vertices[] = {
     -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
     
-vec3 cube_positions[10] = {
+static vec3 cube_positions[10] = {
     {0.0f, 0.0f, 0.0f},
     {0.0f, 0.0f, 0.0f},
     {0.0f, 0.0f, 0.0f},
@@ -73,14 +73,14 @@ static struct uniforms_t{
 static scene_t *scene;
 static window_manager_t *window_manager;
 
-void process_inputs() {
+static void process_inputs() {
     if (window_manager->poll_for_key_input(window_manager, GLFW_KEY_ESCAPE))
     {
         window_manager->close_window(window_manager);
     }
 }
 
-void gen_cube_positions(vec3 buffer[], int num_cubes) {
+static void gen_cube_positions(vec3 buffer[], int num_cubes) {
     srand(time(0));
 
     float x;
@@ -100,7 +100,7 @@ void gen_cube_positions(vec3 buffer[], int num_cubes) {
     }
 } 
 
-void render_loop() {
+static void render_loop() {
     process_inputs();
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
