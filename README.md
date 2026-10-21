@@ -12,8 +12,6 @@ My follow along of [LearnOpenGL](https://learnopengl.com/) but in C.
     - `sudo pacman -S base-devel glfw-wayland glfw-x11 mesa mesa-utils`
     - This will install GLFW, glad source code is included with the repo
 
-## Usage
-
 ## Development
 
 - When starting a new lesson
@@ -23,8 +21,30 @@ My follow along of [LearnOpenGL](https://learnopengl.com/) but in C.
       - add import/include of new lesson
       - add mapping in main if/else clause to render the given example for a specific keyword
       - add entry to set render loop for the given example
-- compile `make`
+
+## Usage
+
+- run `make`
 - run `./bin/main.bin --example name-of-example`
+
+### Examples
+
+- triangle
+- rectangle
+- two_triangles_1
+- two_triangles_2
+- two_triangles_3
+- uniform
+- attributes
+- invert
+- horizontal
+- vertex_as_color
+- smiling_box
+- transformation
+- 2d_coordinates
+- 3d_coordinates
+- camera
+- mandelbrot
 
 ## Resources
 
