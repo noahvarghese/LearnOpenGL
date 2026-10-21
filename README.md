@@ -30,21 +30,36 @@ My follow along of [LearnOpenGL](https://learnopengl.com/) but in C.
 ### Examples
 
 - triangle
+  - ![triangle](demo/triangle.png)
 - rectangle
+  - ![rectangle](demo/rectangle.png)
 - two_triangles_1
+  - ![two_triangles_1](demo/two_triangles_1.png)
 - two_triangles_2
+  - ![two_triangles_2](demo/two_triangles_2.png)
 - two_triangles_3
+  - ![two_triangles_3](demo/two_triangles_3.png)
 - uniform
+  - ![uniform](demo/uniform.png)
 - attributes
+  - ![attributes](demo/attributes.png)
 - invert
+  - ![invert](demo/invert.png)
 - horizontal
+  - ![horizontal](demo/horizontal.png)
 - vertex_as_color
+  - ![vertex_as_color](demo/vertex_as_color.png)
 - smiling_box
+  - ![smiling_box](demo/smiling_box.png)
 - transformation
+  - ![transformation](demo/transformation.png)
 - 2d_coordinates
+  - ![2d_coordinates](demo/2d_coordinates.png)
 - 3d_coordinates
+  - ![3d_coordinates](demo/3d_coordinates.png)
 - camera
 - mandelbrot
+  - ![mandelbrot](demo/mandelbrot.png)
 
 ## Resources
 
